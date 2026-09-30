@@ -23,7 +23,10 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Data cleaning with regex, handling missing values, unit normalization, timeseries indexing, and decennial aggregations.
 * **[Assignment 03: Pandas Essentials for Data Visualization](Assignment_03_Pandas_Visualizations/)**  
   * *Focus:* Exploratory Data Analysis (EDA) using built-in pandas/Matplotlib plotting (line charts, bar charts, KDE density plots, pie charts, and multi-panel subplots).
-
+* **[Assignment 04: The Seaborn Essentials for Data Visualization](Assignment_04_Seaborn_Visualizations/)**  
+  * *Focus:* Advanced data visualization with Seaborn, data reshaping using `pandas .melt()`, relational line plots, multi-panel faceted subplots, categorical bar plots, and Kernel Density Estimation (KDE) over historical US population data.
+* **[Assignment 05: Obtaining Data (Statistics Canada)](Assignment_05_GetData/)**  
+  * *Focus:* Automated data retrieval via URLs and ZIP extraction, data governance and copyright compliance under StatCan Open Licence, exploratory data analysis, and professional visualizations with Seaborn.
 *(Future assignments and capstone projects will be added here progressively.)*
 
 ---
