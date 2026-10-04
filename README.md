@@ -28,7 +28,10 @@ Each assignment is self-contained within its own directory, including raw datase
 * **[Assignment 05: Obtaining Data (Statistics Canada)](Assignment_05_GetData/)**  
   * *Focus:* Automated data retrieval via URLs and ZIP extraction, data governance and copyright compliance under StatCan Open Licence, exploratory data analysis, and professional visualizations with Seaborn.
 *(Future assignments and capstone projects will be added here progressively.)*
-
+* **[Assignment 06: Income Inequality vs GDP per Capita](Assignment_06_Income_Inequality_GDP/)**  
+  * *Focus:* Data cleaning and temporal imputation (`ffill`/`bfill`), target year snapshot filtering (2019), logarithmic scale data visualization with Seaborn and Matplotlib, custom axis formatting, and analytical interpretation of wealth distribution versus economic output.
+  * *(Future assignments and capstone projects will be added here progressively.)*
+    
 ---
 
 ## How to Navigate & Run
