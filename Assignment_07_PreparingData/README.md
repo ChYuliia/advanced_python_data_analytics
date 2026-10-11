@@ -1,66 +1,75 @@
-# Assignment 06: Income Inequality vs GDP per Capita
+# Assignment 07: Preparing Data (Avocado Prices & Sales Volume)
 
-This assignment investigates global economic disparities by analyzing the relationship between a country's economic output (**GDP per capita**) and its income inequality (**Gini index**) for the year 2019. The workflow covers data wrangling, handling missing values through temporal propagation, target year snapshot filtering, logarithmic scale data visualization using Seaborn and Matplotlib, and analytical interpretation of wealth distribution.
+This assignment focuses on data cleaning, transformation, and structural preparation using historical data on avocado prices and sales volume across multiple U.S. markets. The workflow covers inspecting data integrity, checking for missing values, filtering out overlapping regional aggregates, dropping irrelevant columns, standardizing dates and headers, engineering percentage-based features for bag sizes, and performing multi-level data aggregation with `groupby` and `unstack`.
 
 ---
 
 ## Technical Stack & Environment
 
-* **Language:** Python 3.9+
-* **Libraries:** `pandas`, `NumPy`, `seaborn`, `matplotlib`
-* **Environment:** Jupyter Notebook (`.ipynb`) & Reproducible Python Scripts
-* **Reference Curriculum:** CIS 2267 / Murach's Python for Data Analysis (Sinclair Community College)
+- **Language:** Python 3.9+
+
+- **Libraries:** `pandas`, `NumPy`
+
+- **Environment:** Jupyter Notebook (`.ipynb`) & Reproducible Python Scripts
+
+- **Reference Curriculum:** CIS 2267 / Murach's Python for Data Analysis (Sinclair Community College)
 
 ---
 
 ## Dataset Overview
 
-* **Source:** Our World in Data / Global Economic Inequality Database
-* **Dataset:** `gini-vs-gdp-per-capita.csv`
-* **Key Variables:**
-  * `Entity`: Country or regional entity name.
-  * `Year`: Observation year.
-  * `Gini_ind`: Gini index measuring income inequality (higher values indicate greater inequality).
-  * `GDP_per_capita`: Gross Domestic Product per capita, PPP (constant 2017 international \$).
+- **Source:** Student projects for Murach’s Python for Data Analysis / Avocado historical market dataset
+
+- **Dataset:** `avocado.csv`
+
+- **Key Variables & Transformations:**
+  - `Date`: Observation date (converted to datetime format).
+  - `Region`: Geographic market name (filtered to exclude nationwide aggregates like `TotalUS`).
+  - `Type`: Avocado cultivation type (`conventional` or `organic`).
+  - `TotalBags`: Total volume of bags sold.
+  - *Engineered Features:* `PctSmallBags`, `PctLargeBags`, `PctXLargeBags` (calculated percentage proportions relative to `TotalBags`).
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_06_Income_Inequality_GDP/
+Assignment_07_PreparingData/
 ├── data/
-│   └── gini-vs-gdp-per-capita.csv        # Raw dataset containing historical GDP and Gini metrics
+│   └── avocado.csv                        # Raw historical avocado pricing and sales dataset
 ├── docs/
-│   └── 06_Assignment_CleanData.pdf       # Exported assignment worksheet report
+│   └── 07_Assignment_PreparingData.pdf    # Exported assignment worksheet report
 ├── notebooks/
-│   └── 06_Assignment_CleanData.ipynb     # Executed notebook workflow, data pipeline & visualizations
+│   └── 07_Assignment_PreparingData.ipynb  # Executed notebook workflow & data pipeline
 └── README.md
 ```
 ---
 
 ### Workflow Summary & Key Learnings
 
-* **Data Wrangling & Imputation:** Processed global socio-economic datasets, standardizing variable names and removing non-country aggregate regions to isolate sovereign entities. Applied entity-level chronological forward and backward filling (`ffill`/`bfill`) to bridge temporal gaps in historical Gini index and GDP data.
-* **Target Year Snapshot:** Filtered structured time-series data strictly for the target year (**2019**) and performed a complete-case analysis (`dropna`) to ensure data integrity for cross-sectional comparison.
-* **Exploratory Data Analysis (EDA):** Inspected memory usage, dataframe shapes, and generated transposed statistical summaries (`describe().T`) to evaluate the distribution of global income inequality and economic output.
-* **Advanced Visualization:** 
-  * **Logarithmic Scale Scatter Plot:** Constructed a professional relational plot using `seaborn` and `matplotlib` with a logarithmic scale on the X-axis for GDP per capita to effectively visualize non-linear relationships across diverse economies.
-  * **Custom Formatting & Annotation:** Configured major-tick gridlines, currency formatting (`$`), and programmatically highlighted key benchmark countries (**Gabon** and the **United States**) with custom bounding boxes and annotations.
-* **Analytical Interpretation:** Concluded the study with a formal evaluation of the weak negative relationship between economic development and income distribution, noting the high variance among wealthy nations and the necessity of structural government policies.
+- **Data Inspection & Integrity:** Loaded historical avocado market data, verified structural integrity, and computed missing values summaries across all columns to confirm dataset completeness.
 
+- **Geographical Filtering:** Filtered out nationwide aggregate records (`TotalUS`) to prevent data overlap and maintain consistent regional granularity, accurately tracking the count of dropped rows.
+
+- **Schema Transformation & Standardization:** Dropped irrelevant index (`Unnamed: 0`) and PLU volume columns (`4046`, `4225`, `4770`), converted the `Date` field into a standard datetime format for temporal handling, and standardized column headers to title case without spaces.
+
+- **Feature Engineering:** Calculated proportional bag size distributions by deriving percentage metrics for small, large, and extra-large bags relative to total bag volume (`TotalBags`).
+
+- **Multi-Level Aggregation & Pivoting:** Executed multi-level grouping by Region, Year, and Type, summed total bag volumes, and applied `unstack` to pivot cultivation types into separate columns for a structured summary report.
 ---
 
 ### How to Run
 
 1. Open **Anaconda Prompt** (or your standard terminal/Command Prompt).
+
 2. Navigate to the assignment directory:
    ```bash
-   cd Assignment_06_CleanData
+   cd Assignment_07_PreparingData
    ```
 3. Launch Jupyter Notebook:
    ```bash
    jupyter notebook
    ```
-4. In the browser window that opens automatically, navigate to the 'notebooks/' folder and open `06_Assignment_CleanData.ipynb`.
-5. Run all cells sequentially to execute the data cleaning pipeline, generate the log-scale visualization, and view the analysis.
+4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `07_Assignment_PreparingData.ipynb`.
+
+5. Run all cells sequentially to execute the data cleaning pipeline, generate feature percentages, and view the aggregated summary table.
