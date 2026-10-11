@@ -30,7 +30,9 @@ Each assignment is self-contained within its own directory, including raw datase
 *(Future assignments and capstone projects will be added here progressively.)*
 * **[Assignment 06: Clean Data (Income Inequality vs GDP per Capita)](Assignment_06__CleanData/)**  
   * *Focus:* Data cleaning and temporal imputation (`ffill`/`bfill`), target year snapshot filtering (2019), logarithmic scale data visualization with Seaborn and Matplotlib, custom axis formatting, and analytical interpretation of wealth distribution versus economic output.
-  * *(Future assignments and capstone projects will be added here progressively.)*
+* **[Assignment 07: Preparing Data (Avocado Prices)](Assignment_07_PreparingData/)**  
+  * *Focus:* Data cleaning and inspection, handling missing values, filtering geographical regions, dropping irrelevant index and PLU columns, datetime conversion, column name standardization, feature engineering (calculating bag size percentages), and multi-level data aggregation with `groupby` and `unstack`.
+* *(Future assignments and capstone projects will be added here progressively.)*
     
 ---
 
