@@ -32,6 +32,8 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Data cleaning and temporal imputation (`ffill`/`bfill`), target year snapshot filtering (2019), logarithmic scale data visualization with Seaborn and Matplotlib, custom axis formatting, and analytical interpretation of wealth distribution versus economic output.
 * **[Assignment 07: Preparing Data (Avocado Prices)](Assignment_07_PreparingData/)**  
   * *Focus:* Data cleaning and inspection, handling missing values, filtering geographical regions, dropping irrelevant index and PLU columns, datetime conversion, column name standardization, feature engineering (calculating bag size percentages), and multi-level data aggregation with `groupby` and `unstack`.
+* **[Midterm Project: US Farmland Data Analysis (2012 vs 2017)](Midterm_Project_Farmland/)**  
+  * *Focus:* Multi-part analytical project involving loading and cleaning USDA NASS Census of Agriculture data, calculating absolute and relative changes, merging state landmass data from U.S. Census Bureau Gazetteer Files, computing agricultural density proportions, and synthesizing findings into a structured policy report.
 * *(Future assignments and capstone projects will be added here progressively.)*
     
 ---
