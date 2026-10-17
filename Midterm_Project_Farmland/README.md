@@ -1,6 +1,6 @@
-# Assignment 07: Preparing Data (Avocado Prices & Sales Volume)
+# Midterm Project: US Farmland Data Analysis (2012 vs 2017)
 
-This assignment focuses on data cleaning, transformation, and structural preparation using historical data on avocado prices and sales volume across multiple U.S. markets. The workflow covers inspecting data integrity, checking for missing values, filtering out overlapping regional aggregates, dropping irrelevant columns, standardizing dates and headers, engineering percentage-based features for bag sizes, and performing multi-level data aggregation with `groupby` and `unstack`.
+This project focuses on data loading, cleaning, manipulation, and structural integration using historical agricultural census data on U.S. farm acreage alongside official state landmass measurements. The workflow covers standardizing data formats, calculating absolute and relative acreage changes, merging datasets with strict validation checks, computing agricultural density proportions relative to state land areas, and synthesizing findings into a structured policy and data analysis report.
 
 ---
 
@@ -8,68 +8,75 @@ This assignment focuses on data cleaning, transformation, and structural prepara
 
 - **Language:** Python 3.9+
 
-- **Libraries:** `pandas`, `NumPy`
+- **Libraries:** `pandas`, `matplotlib`, `seaborn`
 
 - **Environment:** Jupyter Notebook (`.ipynb`) & Reproducible Python Scripts
 
-- **Reference Curriculum:** CIS 2267 / Murach's Python for Data Analysis (Sinclair Community College)
+- **Reference Curriculum:** CIS 2267 Advanced Python for Data Analytics / Murach's Python for Data Analysis (Sinclair Community College)
 
 ---
 
 ## Dataset Overview
 
-- **Source:** Student projects for Murach’s Python for Data Analysis / Avocado historical market dataset
-
-- **Dataset:** `avocado.csv`
+- **Primary Source:** U.S. Department of Agriculture (USDA) National Agricultural Statistics Service (NASS) Census of Agriculture (compiled via American Farmland Trust / Farmland Information Center).
+- **Secondary Source:** U.S. Census Bureau Geography Division State Gazetteer Files.
+- **Datasets:** 
+  - `Farmland.csv`: Historical state-level farm acreage for 2012 and 2017.
+  - `2026_Gaz_state_national.csv`: Official U.S. state land area benchmarks.
 
 - **Key Variables & Transformations:**
-  - `Date`: Observation date (converted to datetime format).
-  - `Region`: Geographic market name (filtered to exclude nationwide aggregates like `TotalUS`).
-  - `Type`: Avocado cultivation type (`conventional` or `organic`).
-  - `TotalBags`: Total volume of bags sold.
-  - *Engineered Features:* `PctSmallBags`, `PctLargeBags`, `PctXLargeBags` (calculated percentage proportions relative to `TotalBags`).
+  - `state`: Normalized state name (Title Case).
+  - `farmland_2012` & `farmland_2017`: Total agricultural acreage converted to integer format.
+  - `diff_abs` & `diff_pct`: Engineered absolute net change in acres and relative percentage change.
+  - `aland_acres`: Total state land area converted from square miles to acres (1 sq mi = 640 acres).
+  - `pct_landmass_2017`: Proportion of state land dedicated to farming.
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_07_PreparingData/
+Midterm_Project_Farmland/
 ├── data/
-│   └── avocado.csv                        # Raw historical avocado pricing and sales dataset
+│   ├── Farmland.csv                  # Raw USDA farmland acreage dataset
+│   └── 2026_Gaz_state_national.csv   # U.S. Census Bureau state land area file
 ├── docs/
-│   └── 07_Assignment_PreparingData.pdf    # Exported assignment worksheet report
+│   └── 08_Midterm_Project.pdf        # Exported assignment report & policy synthesis
+│   └── Project_Guide.pdf             # Course project guidelines, instructions, and evaluation criteria
 ├── notebooks/
-│   └── 07_Assignment_PreparingData.ipynb  # Executed notebook workflow & data pipeline
+│   └── 08_Midterm_Project.ipynb      # Executed analysis pipeline & visualizations
 └── README.md
 ```
 ---
 
 ### Workflow Summary & Key Learnings
 
-- **Data Inspection & Integrity:** Loaded historical avocado market data, verified structural integrity, and computed missing values summaries across all columns to confirm dataset completeness.
+- **Data Inspection & Integrity:** Loaded historical U.S. farmland census data from CSV, verified structural integrity, and confirmed dataset completeness across all 50 states without missing values.
 
-- **Geographical Filtering:** Filtered out nationwide aggregate records (`TotalUS`) to prevent data overlap and maintain consistent regional granularity, accurately tracking the count of dropped rows.
+- **Data Cleaning & Standardization:** Standardized column headers to standard snake_case, normalized state names to Title Case to ensure clean string matching, and converted acreage strings into precise integer values.
 
-- **Schema Transformation & Standardization:** Dropped irrelevant index (`Unnamed: 0`) and PLU volume columns (`4046`, `4225`, `4770`), converted the `Date` field into a standard datetime format for temporal handling, and standardized column headers to title case without spaces.
+- **Quantitative Metric Engineering:** Computed absolute net changes in acreage (`diff_abs`) and relative percentage changes (`diff_pct`) between the 2012 and 2017 agricultural censuses to evaluate nationwide and state-level trends.
 
-- **Feature Engineering:** Calculated proportional bag size distributions by deriving percentage metrics for small, large, and extra-large bags relative to total bag volume (`TotalBags`).
+- **Dataset Merging & Spatial Integration:** Merged the farmland dataset with official U.S. Census Bureau Gazetteer state land area benchmarks, converting square miles to exact acreage (1 sq mi = 640 acres) with strict validation checks.
 
-- **Multi-Level Aggregation & Pivoting:** Executed multi-level grouping by Region, Year, and Type, summed total bag volumes, and applied `unstack` to pivot cultivation types into separate columns for a structured summary report.
+- **Proportional & Comparative Analysis:** Calculated each state's agricultural land proportion relative to its total landmass for both 2012 and 2017, identifying leading agricultural densities and regions experiencing the most severe relative declines.
+
+- **Visual & Policy Synthesis:** Generated ranked horizontal bar charts to visualize state-level totals and change metrics, and synthesized empirical findings into a structured policy report addressing urban sprawl and UN Sustainable Development Goal #2 (Zero Hunger).
+
 ---
 
 ### How to Run
 
 1. Open **Anaconda Prompt** (or your standard terminal/Command Prompt).
 
-2. Navigate to the assignment directory:
+2. Navigate to the project directory:
    ```bash
-   cd Assignment_07_PreparingData
+   cd Midterm_Project_Farmland
    ```
 3. Launch Jupyter Notebook:
    ```bash
    jupyter notebook
    ```
-4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `07_Assignment_PreparingData.ipynb`.
+4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `08_Midterm_Project_Yulia_Chernysheva.ipynb`.
 
-5. Run all cells sequentially to execute the data cleaning pipeline, generate feature percentages, and view the aggregated summary table.
+5. Run all cells sequentially to execute the data cleaning and merging pipeline, generate comparative rankings, render the visualizations, and review the policy synthesis report.
