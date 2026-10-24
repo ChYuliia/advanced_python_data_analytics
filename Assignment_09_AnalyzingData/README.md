@@ -1,61 +1,71 @@
-# Assignment 07: Preparing Data (Avocado Prices & Sales Volume)
+# Assignment 09: Analyzing Data (Solar Panels Sales & Multi-Dimensional Aggregation)
 
-This assignment focuses on data cleaning, transformation, and structural preparation using historical data on avocado prices and sales volume across multiple U.S. markets. The workflow covers inspecting data integrity, checking for missing values, filtering out overlapping regional aggregates, dropping irrelevant columns, standardizing dates and headers, engineering percentage-based features for bag sizes, and performing multi-level data aggregation with `groupby` and `unstack`.
+This assignment focuses on multidimensional sales data analysis, pivoting, and aggregation techniques using enterprise-style transactions from a solar panel manufacturer (RVN Company, UK). The analytical workflow covers multi-level grouping (`groupby`), hierarchical aggregations (`agg` with `sum`, `mean`, `min`, `max`), flexible cross-tabulations using `pivot_table`, and time-series/sequential rate-of-change analysis using `.pct_change()`.
 
 ---
 
 ## Technical Stack & Environment
 
 - **Language:** Python 3.9+
-
 - **Libraries:** `pandas`, `NumPy`
-
 - **Environment:** Jupyter Notebook (`.ipynb`) & Reproducible Python Scripts
-
 - **Reference Curriculum:** CIS 2267 / Murach's Python for Data Analysis (Sinclair Community College)
 
 ---
 
 ## Dataset Overview
 
-- **Source:** Student projects for Murach’s Python for Data Analysis / Avocado historical market dataset
+- **Context:** Synthetic enterprise ERP sales records for solar panel installations in the United Kingdom, recorded in British Pounds Sterling (GBP, £)
+- **Dataset:** `sales.csv` (64 records)
+- **Independent Variables (Dimensions):**
+  - `Year`: 2026, 2027
+  - `Region`: North, South, East, West
+  - `Type`: Residential, Commercial
+  - `Product`: Economy, Good, Better, Best
+- **Value Variables (Metrics):**
+  - `Quantity_Sold`: Volume of solar panel units sold.
+  - `Price_GBP`: Unit price per panel installation in British Pounds (£).
+  - `Total_Sales_GBP`: Total revenue generated (`Quantity_Sold × Price_GBP`).
 
-- **Dataset:** `avocado.csv`
+---
 
-- **Key Variables & Transformations:**
-  - `Date`: Observation date (converted to datetime format).
-  - `Region`: Geographic market name (filtered to exclude nationwide aggregates like `TotalUS`).
-  - `Type`: Avocado cultivation type (`conventional` or `organic`).
-  - `TotalBags`: Total volume of bags sold.
-  - *Engineered Features:* `PctSmallBags`, `PctLargeBags`, `PctXLargeBags` (calculated percentage proportions relative to `TotalBags`).
+## Analytical Methods & Highlights
+
+1. **Categorical Groupings (`groupby`):** Evaluating mean sales values across operational dimensions (`Year`, `Region`, `Product`).
+2. **Multi-Index Aggregations (`agg`):** Applying multi-metric functions (`sum`, `mean`, `min`, `max`) across hierarchical levels (`Year` × `Region` × `Product`).
+3. **Cross-Tabulation & Multi-Dimensional Pivoting (`pivot_table`):**
+   - Pivoting time periods against geographic territories with multi-column values.
+   - Comparative evaluation of product classes across residential and commercial sectors.
+   - Multi-level index and column pivots tracking metric boundaries (`min` vs. `max`).
+4. **Growth Analysis (`pct_change`):** Computing period-over-period and sequential percentage change of total revenue grouped by operational year and market territory.
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_07_PreparingData/
+Assignment_09_AnalyzingData/
 ├── data/
-│   └── avocado.csv                        # Raw historical avocado pricing and sales dataset
+│   └── sales.csv                           # Raw enterprise solar panel sales dataset
 ├── docs/
-│   └── 07_Assignment_PreparingData.pdf    # Exported assignment worksheet report
+│   └── 09_Assignment_AnalyzingData.pdf     # Exported assignment worksheet report
 ├── notebooks/
-│   └── 07_Assignment_PreparingData.ipynb  # Executed notebook workflow & data pipeline
+│   └── 09_Assignment_AnalyzingData.ipynb   # Executed Jupyter notebook workflow
 └── README.md
 ```
 ---
 
 ### Workflow Summary & Key Learnings
 
-- **Data Inspection & Integrity:** Loaded historical avocado market data, verified structural integrity, and computed missing values summaries across all columns to confirm dataset completeness.
+- **Data Inspection & Integrity:** Loaded synthetic enterprise ERP sales records for solar panel installations, verified dimensions across 64 individual observations, and confirmed dataset consistency across operational variables.
 
-- **Geographical Filtering:** Filtered out nationwide aggregate records (`TotalUS`) to prevent data overlap and maintain consistent regional granularity, accurately tracking the count of dropped rows.
+- **Dimensional Categorization:** Structured sales metrics across independent categorical dimensions, separating temporal variables (`Year`), geographical territories (`Region`), operational sectors (`Type`), and tiers (`Product`).
 
-- **Schema Transformation & Standardization:** Dropped irrelevant index (`Unnamed: 0`) and PLU volume columns (`4046`, `4225`, `4770`), converted the `Date` field into a standard datetime format for temporal handling, and standardized column headers to title case without spaces.
+- **Multi-Level Aggregation:** Implemented hierarchical groupings using `sales.groupby(['Year', 'Region', 'Product'])` and applied multiple simultaneous aggregate functions (`sum`, `mean`, `min`, `max`) to extract performance boundaries across transaction volumes and revenues.
 
-- **Feature Engineering:** Calculated proportional bag size distributions by deriving percentage metrics for small, large, and extra-large bags relative to total bag volume (`TotalBags`).
+- **Cross-Tabulation & Multi-Dimensional Pivoting:** Built versatile cross-tabulations using `pivot_table` to reshape multi-dimensional metrics, evaluating average price points and units sold across regions and sectors with multi-index row and column hierarchies.
 
-- **Multi-Level Aggregation & Pivoting:** Executed multi-level grouping by Region, Year, and Type, summed total bag volumes, and applied `unstack` to pivot cultivation types into separate columns for a structured summary report.
+- **Sequential Rate-of-Change Analysis:** Calculated period-over-period and sequential percentage changes using `.pct_change()` on aggregated revenue to track performance fluctuations across operating years and geographic markets.
 ---
 
 ### How to Run
@@ -64,12 +74,12 @@ Assignment_07_PreparingData/
 
 2. Navigate to the assignment directory:
    ```bash
-   cd Assignment_07_PreparingData
+   cd Assignment_09_AnalyzingData
    ```
 3. Launch Jupyter Notebook:
    ```bash
    jupyter notebook
    ```
-4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `07_Assignment_PreparingData.ipynb`.
+4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `09_Assignment_AnalyzingData.ipynb`.
 
 5. Run all cells sequentially to execute the data cleaning pipeline, generate feature percentages, and view the aggregated summary table.
