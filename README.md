@@ -27,13 +27,14 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Advanced data visualization with Seaborn, data reshaping using `pandas .melt()`, relational line plots, multi-panel faceted subplots, categorical bar plots, and Kernel Density Estimation (KDE) over historical US population data.
 * **[Assignment 05: Obtaining Data (Statistics Canada)](Assignment_05_GetData/)**  
   * *Focus:* Automated data retrieval via URLs and ZIP extraction, data governance and copyright compliance under StatCan Open Licence, exploratory data analysis, and professional visualizations with Seaborn.
-*(Future assignments and capstone projects will be added here progressively.)*
 * **[Assignment 06: Clean Data (Income Inequality vs GDP per Capita)](Assignment_06__CleanData/)**  
   * *Focus:* Data cleaning and temporal imputation (`ffill`/`bfill`), target year snapshot filtering (2019), logarithmic scale data visualization with Seaborn and Matplotlib, custom axis formatting, and analytical interpretation of wealth distribution versus economic output.
 * **[Assignment 07: Preparing Data (Avocado Prices)](Assignment_07_PreparingData/)**  
   * *Focus:* Data cleaning and inspection, handling missing values, filtering geographical regions, dropping irrelevant index and PLU columns, datetime conversion, column name standardization, feature engineering (calculating bag size percentages), and multi-level data aggregation with `groupby` and `unstack`.
 * **[Midterm Project: US Farmland Data Analysis (2012 vs 2017)](Midterm_Project_Farmland/)**  
   * *Focus:* Multi-part analytical project involving loading and cleaning USDA NASS Census of Agriculture data, calculating absolute and relative changes, merging state landmass data from U.S. Census Bureau Gazetteer Files, computing agricultural density proportions, and synthesizing findings into a structured policy report.
+* **[Assignment 09: Analyzing Data (Solar Panels Sales)](Assignment_09_AnalyzingData/)**  
+  * *Focus:* Multidimensional data analysis using `groupby` aggregations (`agg(['sum', 'mean', 'min', 'max'])`), cross-tabulation and multi-index aggregation with `pivot_table`, and sequential rate-of-change analysis using `.pct_change()`.
 * *(Future assignments and capstone projects will be added here progressively.)*
     
 ---
