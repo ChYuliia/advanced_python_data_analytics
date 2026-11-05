@@ -7,7 +7,7 @@ This repository serves as a structured workspace for coursework, data wrangling 
 ## Technical Stack & Libraries
 
 * **Language:** Python 3.9+
-* **Core Data Tools:** `pandas`, `NumPy`
+* **Core Data Tools:** `pandas`, `NumPy`, `scikit-learn`
 * **Visualization:** `matplotlib`, `seaborn`
 * **Environment:** Jupyter Notebooks (`.ipynb`) & Reproducible Python Scripts
 
@@ -35,6 +35,8 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Multi-part analytical project involving loading and cleaning USDA NASS Census of Agriculture data, calculating absolute and relative changes, merging state landmass data from U.S. Census Bureau Gazetteer Files, computing agricultural density proportions, and synthesizing findings into a structured policy report.
 * **[Assignment 09: Analyzing Data (Solar Panels Sales)](Assignment_09_AnalyzingData/)**  
   * *Focus:* Multidimensional data analysis using `groupby` aggregations (`agg(['sum', 'mean', 'min', 'max'])`), cross-tabulation and multi-index aggregation with `pivot_table`, and sequential rate-of-change analysis using `.pct_change()`.
+* **[Assignment 11: Machine Learning & Linear Regression (Diamonds Price Prediction)](Assignment_11_Linear_Regression/)**  
+  * *Focus:* Simple linear regression workflow using `scikit-learn`, correlation matrix analysis with condensed Seaborn heatmaps, train/test splitting (`train_test_split`), model fitting and $R^2$ score evaluation, prediction transformation into pandas DataFrames, data reshaping with `.melt()`, and regression line visualization.
 * *(Future assignments and capstone projects will be added here progressively.)*
     
 ---
