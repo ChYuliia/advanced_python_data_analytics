@@ -1,13 +1,13 @@
-# Assignment 09: Analyzing Data (Solar Panels Sales & Multi-Dimensional Aggregation)
+# Assignment 11: Machine Learning & Linear Regression (Diamonds Price Prediction)
 
-This assignment focuses on multidimensional sales data analysis, pivoting, and aggregation techniques using enterprise-style transactions from a solar panel manufacturer (RVN Company, UK). The analytical workflow covers multi-level grouping (`groupby`), hierarchical aggregations (`agg` with `sum`, `mean`, `min`, `max`), flexible cross-tabulations using `pivot_table`, and time-series/sequential rate-of-change analysis using `.pct_change()`.
+This assignment focuses on building and evaluating a simple linear regression workflow using Python's `scikit-learn` and `seaborn` libraries. Based on the Seaborn `diamonds` dataset, the analytical workflow covers correlation matrix evaluation using condensed heatmaps, feature selection, train/test dataset partitioning (`train_test_split`), model fitting and performance scoring ($R^2$), array-to-DataFrame prediction structuring, data reshaping with `.melt()`, and regression line visualization.
 
 ---
 
 ## Technical Stack & Environment
 
 - **Language:** Python 3.9+
-- **Libraries:** `pandas`, `NumPy`
+- **Libraries:** `pandas`, `NumPy`, `matplotlib`, `seaborn`, `scikit-learn`
 - **Environment:** Jupyter Notebook (`.ipynb`) & Reproducible Python Scripts
 - **Reference Curriculum:** CIS 2267 / Murach's Python for Data Analysis (Sinclair Community College)
 
@@ -15,57 +15,72 @@ This assignment focuses on multidimensional sales data analysis, pivoting, and a
 
 ## Dataset Overview
 
-- **Context:** Synthetic enterprise ERP sales records for solar panel installations in the United Kingdom, recorded in British Pounds Sterling (GBP, £)
-- **Dataset:** `sales.csv` (64 records)
-- **Independent Variables (Dimensions):**
-  - `Year`: 2026, 2027
-  - `Region`: North, South, East, West
-  - `Type`: Residential, Commercial
-  - `Product`: Economy, Good, Better, Best
-- **Value Variables (Metrics):**
-  - `Quantity_Sold`: Volume of solar panel units sold.
-  - `Price_GBP`: Unit price per panel installation in British Pounds (£).
-  - `Total_Sales_GBP`: Total revenue generated (`Quantity_Sold × Price_GBP`).
+- **Source:** Seaborn built-in library dataset (`sns.load_dataset('diamonds')`)
+- **Dataset:** `diamonds` (53,940 records, 10 attributes)
+- **Target Variable (Metric):**
+  - `price`: Price in US dollars ($326–$18,823)
+- **Feature Variables (Dimensions & Physical Attributes):**
+  - `carat`: Weight of the diamond (0.2–5.01 ct)
+  - `cut`: Cut quality (Fair, Good, Very Good, Premium, Ideal)
+  - `color`: Diamond color grade from J (worst) to D (best)
+  - `clarity`: Clarity measurement (I1, SI2, SI1, VS2, VS1, VVS2, VVS1, IF)
+  - `x`, `y`, `z`: Diamond dimensions (length, width, depth in mm)
+  - `depth`: Total depth percentage (`z / mean(x, y) = 2 * z / (x + y)`)
+  - `table`: Width of top of diamond relative to widest point
 
 ---
 
 ## Analytical Methods & Highlights
 
-1. **Categorical Groupings (`groupby`):** Evaluating mean sales values across operational dimensions (`Year`, `Region`, `Product`).
-2. **Multi-Index Aggregations (`agg`):** Applying multi-metric functions (`sum`, `mean`, `min`, `max`) across hierarchical levels (`Year` × `Region` × `Product`).
-3. **Cross-Tabulation & Multi-Dimensional Pivoting (`pivot_table`):**
-   - Pivoting time periods against geographic territories with multi-column values.
-   - Comparative evaluation of product classes across residential and commercial sectors.
-   - Multi-level index and column pivots tracking metric boundaries (`min` vs. `max`).
-4. **Growth Analysis (`pct_change`):** Computing period-over-period and sequential percentage change of total revenue grouped by operational year and market territory.
+1. **Correlation Matrix & Condensed Heatmap:**
+   - Computing pairwise linear correlations across numeric variables against `price`.
+   - Visualizing correlations with a condensed, sorted Seaborn heatmap formatted to 3 decimal places without a colorbar.
+   - Identifying `carat` as the strongest predictive feature ($r \approx 0.922$).
+
+2. **Data Partitioning (`train_test_split`):**
+   - Splitting feature (`carat`) and target (`price`) into 70% training and 30% testing subsets with fixed random state (`random_state=42`) for reproducibility.
+
+3. **Model Architecture & Performance Evaluation:**
+   - Initializing and fitting an Ordinary Least Squares `LinearRegression` model on training data.
+   - Scoring goodness-of-fit via the coefficient of determination on unseen test data ($R^2 \approx 0.849$).
+
+4. **Prediction Transformation & Alignment:**
+   - Generating price predictions from test features and storing results in a pandas DataFrame (`price_predicted`).
+   - Merging predicted prices with test features and actual prices using aligned index resets (`.reset_index(drop=True)`).
+
+5. **Data Reshaping & Model Visualization:**
+   - Transforming wide tabular predictions into long-form format using `pd.melt()` with `price_type` and `price_value`.
+   - Plotting the regression trend line against actual price scatter across carat weights using `sns.lineplot()` with disabled confidence intervals (`errorbar=None`).
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_09_AnalyzingData/
-├── data/
-│   └── sales.csv                           # Raw enterprise solar panel sales dataset
+Assignment_11_Linear_Regression/
 ├── docs/
-│   └── 09_Assignment_AnalyzingData.pdf     # Exported assignment worksheet report
+│   ├── Assignment_Guide.pdf                   # Course assignment requirements and tasks
+│   └── 11_Assignment_Linear_Regression.pdf    # Exported assignment worksheet report
 ├── notebooks/
-│   └── 09_Assignment_AnalyzingData.ipynb   # Executed Jupyter notebook workflow
+│   └── 11_Assignment_Linear_Regression.ipynb  # Executed Jupyter notebook workflow
 └── README.md
 ```
 ---
 
 ### Workflow Summary & Key Learnings
 
-- **Data Inspection & Integrity:** Loaded synthetic enterprise ERP sales records for solar panel installations, verified dimensions across 64 individual observations, and confirmed dataset consistency across operational variables.
+- **Data Inspection & Integrity:** Loaded the Seaborn `diamonds` dataset containing 53,940 records and 10 features, inspected the DataFrame structure using `.head()` and confirmed column attributes.
 
-- **Dimensional Categorization:** Structured sales metrics across independent categorical dimensions, separating temporal variables (`Year`), geographical territories (`Region`), operational sectors (`Type`), and tiers (`Product`).
+- **Exploratory Correlation Analysis:** Filtered numerical features explicitly (`carat`, `depth`, `table`, `price`, `x`, `y`, `z`) to compute linear correlations with the target variable (`price`) using `data[['carat','depth','table','price','x','y','z']].corr()[['price']]`, sorted results in descending order, and rendered a condensed Seaborn heatmap annotated to 3 decimal places without a colorbar to isolate `carat` ($r \approx 0.922$) as the strongest predictor.
 
-- **Multi-Level Aggregation:** Implemented hierarchical groupings using `sales.groupby(['Year', 'Region', 'Product'])` and applied multiple simultaneous aggregate functions (`sum`, `mean`, `min`, `max`) to extract performance boundaries across transaction volumes and revenues.
+- **Dataset Partitioning & Reproducibility:** Separated the selected predictor (`carat`) and target (`price`), then partitioned them into a 70% training set and a 30% testing set using `train_test_split(..., test_size=0.3, random_state=42)`.
 
-- **Cross-Tabulation & Multi-Dimensional Pivoting:** Built versatile cross-tabulations using `pivot_table` to reshape multi-dimensional metrics, evaluating average price points and units sold across regions and sectors with multi-index row and column hierarchies.
+- **Model Fitting & Goodness-of-Fit Evaluation:** Initialized and trained an Ordinary Least Squares `LinearRegression` model from `scikit-learn` on the training subset, followed by calculating the coefficient of determination on unseen test data ($R^2 \approx 0.849$) via `.score(x_test, y_test)`.
 
-- **Sequential Rate-of-Change Analysis:** Calculated period-over-period and sequential percentage changes using `.pct_change()` on aggregated revenue to track performance fluctuations across operating years and geographic markets.
+- **Prediction Formatting & Data Alignment:** Generated target predictions via `.predict(x_test)`, wrapped the resulting NumPy array into a structured DataFrame (`price_predicted`), and merged it with `x_test` and `y_test` using `.reset_index(drop=True)` to prevent NaN mismatches during index alignment.
+
+- **Data Reshaping & Regression Visualization:** Restructured wide-format data into a tidy long-form representation using `pd.melt(..., id_vars=['carat'], value_vars=['price', 'price_predicted'])` and visualized the fitted regression line against actual diamond prices across carat weights using `sns.lineplot(..., errorbar=None)`.
+
 ---
 
 ### How to Run
@@ -74,12 +89,12 @@ Assignment_09_AnalyzingData/
 
 2. Navigate to the assignment directory:
    ```bash
-   cd Assignment_09_AnalyzingData
+   cd Assignment_11_Linear_Regression
    ```
 3. Launch Jupyter Notebook:
    ```bash
    jupyter notebook
    ```
-4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `09_Assignment_AnalyzingData.ipynb`.
-
-5. Run all cells sequentially to execute the data cleaning pipeline, generate feature percentages, and view the aggregated summary table.
+4. In the browser window that opens automatically, navigate to the `notebooks/` folder and open `11_Assignment_Linear_Regression.ipynb`.
+   
+5. Run all cells sequentially to load the dataset, compute the correlation heatmap, train the linear regression model, and visualize the predicted versus actual regression line.   
