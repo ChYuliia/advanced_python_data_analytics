@@ -35,6 +35,8 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Multi-part analytical project involving loading and cleaning USDA NASS Census of Agriculture data, calculating absolute and relative changes, merging state landmass data from U.S. Census Bureau Gazetteer Files, computing agricultural density proportions, and synthesizing findings into a structured policy report.
 * **[Assignment 09: Analyzing Data (Solar Panels Sales)](Assignment_09_AnalyzingData/)**  
   * *Focus:* Multidimensional data analysis using `groupby` aggregations (`agg(['sum', 'mean', 'min', 'max'])`), cross-tabulation and multi-index aggregation with `pivot_table`, and sequential rate-of-change analysis using `.pct_change()`.
+* **[Assignment 10: Time-Series Data & Outlier Analysis (BLS Employment Trends)](Assignment_10_TimeSeries_Data/)**  
+  * *Focus:* Time-series annualization of monthly labor statistics (handling incomplete final years), comparative outlier treatment methodologies (COVID-19 impact), linear interpolation modeling (`interpolate()`), OLS trendline regression forecasting for 2023–2025, coefficient of determination ($R^2$) evaluation, and scenario-based absolute/relative variance analysis.
 * **[Assignment 11: Machine Learning & Linear Regression (Diamonds Price Prediction)](Assignment_11_Linear_Regression/)**  
   * *Focus:* Simple linear regression workflow using `scikit-learn`, correlation matrix analysis with condensed Seaborn heatmaps, train/test splitting (`train_test_split`), model fitting and $R^2$ score evaluation, prediction transformation into pandas DataFrames, data reshaping with `.melt()`, and regression line visualization.
 * *(Future assignments and capstone projects will be added here progressively.)*
