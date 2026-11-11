@@ -39,6 +39,8 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Time-series annualization of monthly labor statistics (handling incomplete final years), comparative outlier treatment methodologies (COVID-19 impact), linear interpolation modeling (`interpolate()`), OLS trendline regression forecasting for 2023–2025, coefficient of determination ($R^2$) evaluation, and scenario-based absolute/relative variance analysis.
 * **[Assignment 11: Machine Learning & Linear Regression (Diamonds Price Prediction)](Assignment_11_Linear_Regression/)**  
   * *Focus:* Simple linear regression workflow using `scikit-learn`, correlation matrix analysis with condensed Seaborn heatmaps, train/test splitting (`train_test_split`), model fitting and $R^2$ score evaluation, prediction transformation into pandas DataFrames, data reshaping with `.melt()`, and regression line visualization.
+- **[Assignment 12: Multiple Linear Regression & Feature Selection (Auto MPG)](Assignment_12_Multiple_Regression/)**  
+  * *Focus:* Multiple linear regression workflow using `scikit-learn`, data cleaning and categorical string extraction with lambda expressions, categorical encoding via `pd.get_dummies()`, feature scaling with `StandardScaler`, correlation analysis, automated feature selection using `SelectKBest` with `mutual_info_regression`, dynamic $k$-feature iterative evaluation via `for` loops, model performance tracking ($R^2$ train vs test scores), and evaluation of optimal model complexity.
 * *(Future assignments and capstone projects will be added here progressively.)*
     
 ---
