@@ -59,7 +59,6 @@ This assignment focuses on building and evaluating a simple linear regression wo
 ```text
 Assignment_11_Linear_Regression/
 ├── docs/
-│   ├── Assignment_Guide.pdf                   # Course assignment requirements and tasks
 │   └── 11_Assignment_Linear_Regression.pdf    # Exported assignment worksheet report
 ├── notebooks/
 │   └── 11_Assignment_Linear_Regression.ipynb  # Executed Jupyter notebook workflow
