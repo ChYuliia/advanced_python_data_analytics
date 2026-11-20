@@ -45,7 +45,6 @@ Assignment_10_TimeSeries_Data/
 │   |── Employment long.xlsx
 │   └── Employment wide.xlsx
 ├── docs/
-│   ├── Time-Series Data.pdf
 │   └── 10_Assignment_Time_Series_Data.pdf
 ├── notebooks/
 │   └── 10_Assignment_Time_Series_Data.ipynb
