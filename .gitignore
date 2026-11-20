@@ -1,0 +1,16 @@
+# Jupyter Notebook checkpoints (служебный мусор Jupyter)
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Windows & Office temporary files
+Thumbs.db
+Desktop.ini
+~$*
