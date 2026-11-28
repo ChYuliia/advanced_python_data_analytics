@@ -43,7 +43,9 @@ Each assignment is self-contained within its own directory, including raw datase
   * *Focus:* Multiple linear regression workflow using `scikit-learn`, data cleaning and categorical string extraction with lambda expressions, categorical encoding via `pd.get_dummies()`, feature scaling with `StandardScaler`, correlation analysis, automated feature selection using `SelectKBest` with `mutual_info_regression`, dynamic $k$-feature iterative evaluation via `for` loops, model performance tracking ($R^2$ train vs test scores), and evaluation of optimal model complexity.
 * **[Case Study 01: U.S. Maple Syrup Production & Sustainability Analysis](Case_Study_01_Maple_Syrup/)**  
   - *Focus:* End-to-end data analytics case study aligned with UN Sustainable Development Goal 15 (Life on Land) using USDA NASS Quick Stats data (2012, 2013 proxy, and 2017); filtering state-level `TOTAL` aggregates, reshaping wide/long tables (`.melt()`, `.pivot()`), multi-chart exploratory visualization (pie, bar, scatter, pairplot, and condensed correlation heatmaps), simple linear regression modeling with `scikit-learn`, and environmental policy recommendations.
-* *(Case Study 02 and the Final Capstone Project will be added here upon completion.)*
+* **[Case Study 02: Strategic KPI Dashboard: Apple Inc. vs. Alphabet & Meta (2019–2021)](Case_Study_02_KPI_Dashboard/)**  
+  - *Focus:* Executive financial benchmarking from the perspective of Apple's CIO using SEC EDGAR 10-K filings (36 baseline observations across Profit, Sales, Assets, and Equity); computing efficiency ratios (ROS, ROA, ROE) and three-year growth metrics (Dollar, Percent, and Return Growth) in `pandas`, reshaping multi-index tables into PDF-safe flat summary views, and building standardized 2×2 Seaborn/Matplotlib trend and market-share dashboards.
+* *(The Final Capstone Project will be added here upon completion.)*
   
 ---
 
